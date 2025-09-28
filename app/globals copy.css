@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Define your custom properties */
-@theme {
+/* @theme {
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(222.2 84% 4.9%);
   --color-primary: hsl(222.2 47.4% 11.2%);
@@ -23,6 +23,7 @@
     --color-border: hsl(217.2 32.6% 17.5%);
   }
 }
+*/
 /* Base styles */
 * {
   border-color: var(--color-border);
