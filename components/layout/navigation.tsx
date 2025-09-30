@@ -38,7 +38,7 @@ export const Navigation = () => {
         <div className="flex justify-between items-center">
           <motion.a
             href="#home"
-            className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
             Portfolio

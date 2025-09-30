@@ -179,7 +179,7 @@ export const AboutSection = () => {
               className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
               whileHover={{ scale: 1.01 }}
             >
-              I don't build websites—I create{" "}
+              I don&apos;t build websites—I create{" "}
               <span className="text-purple-400 font-semibold">
                 digital experiences
               </span>{" "}
@@ -241,12 +241,12 @@ export const AboutSection = () => {
 
               <motion.div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <motion.p whileHover={{ scale: 1.01 }}>
-                  When you choose to work with me, you're not just hiring a
-                  developer—you're gaining a{" "}
+                  When you choose to work with me, you&apos;re not just hiring a
+                  developer—you&apos;re gaining a{" "}
                   <span className="text-purple-400 font-semibold">
                     strategic partner
                   </span>{" "}
-                  who's as invested in your success as you are.
+                  who&apos;s as invested in your success as you are.
                 </motion.p>
 
                 <motion.p whileHover={{ scale: 1.01 }}>
@@ -255,7 +255,8 @@ export const AboutSection = () => {
                     vision and reality
                   </span>
                   , transforming complex ideas into elegant, user-loving digital
-                  solutions that don't just meet expectations—they shatter them.
+                  solutions that don&apos;t just meet expectations—they shatter
+                  them.
                 </motion.p>
 
                 <motion.p whileHover={{ scale: 1.01 }}>
@@ -279,7 +280,7 @@ export const AboutSection = () => {
                   className="shimmer-button group text-lg px-8 py-6 rounded-2xl border-0 text-white font-bold shadow-2xl"
                 >
                   <span className="relative z-10 flex items-center">
-                    Let's Build Your Legacy
+                    Let&apos;s Build Your Legacy
                     <Rocket className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Button>
@@ -354,9 +355,9 @@ export const AboutSection = () => {
               className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
               whileHover={{ scale: 1.01 }}
             >
-              Your next groundbreaking project is waiting. Let's combine your
-              vision with my expertise to build something that not only succeeds
-              but dominates.
+              Your next groundbreaking project is waiting. Let&apos;s combine
+              your vision with my expertise to build something that not only
+              succeeds but dominates.
             </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -400,8 +401,9 @@ export const AboutSection = () => {
               className="text-2xl text-muted-foreground italic max-w-3xl mx-auto"
               whileHover={{ scale: 1.02 }}
             >
-              "I don't just write code—I architect experiences that users fall
-              in love with and competitors wish they'd thought of first."
+              &quot;I don&apos;t just write code—I architect experiences that
+              users fall in love with and competitors wish they&apos;d thought
+              of first.&quot;
             </motion.p>
             <motion.div
               className="flex justify-center gap-6 mt-8"
