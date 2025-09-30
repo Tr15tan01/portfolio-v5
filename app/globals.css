@@ -1,28 +1,41 @@
 @import "tailwindcss";
 
-/* Define your custom properties */
+/* Purple Theme Variables */
 @theme {
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222.2 84% 4.9%);
-  --color-primary: hsl(222.2 47.4% 11.2%);
-  --color-primary-foreground: hsl(210 40% 98%);
-  --color-secondary: hsl(210 40% 96%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-border: hsl(214.3 31.8% 91.4%);
+  --color-background: hsl(270 100% 99%);
+  --color-foreground: hsl(262 100% 10%);
+  --color-primary: hsl(262 83% 58%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(262 100% 97%);
+  --color-secondary-foreground: hsl(262 83% 58%);
+  --color-accent: hsl(292 83% 58%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-muted: hsl(262 100% 95%);
+  --color-muted-foreground: hsl(262 50% 40%);
+  --color-border: hsl(262 30% 90%);
+  --color-ring: hsl(262 83% 58%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 98%);
 }
 
 /* Dark mode variables */
 @media (prefers-color-scheme: dark) {
   @theme {
-    --color-background: hsl(222.2 84% 4.9%);
-    --color-foreground: hsl(210 40% 98%);
-    --color-primary: hsl(210 40% 98%);
-    --color-primary-foreground: hsl(222.2 47.4% 11.2%);
-    --color-secondary: hsl(217.2 32.6% 17.5%);
-    --color-secondary-foreground: hsl(210 40% 98%);
-    --color-border: hsl(217.2 32.6% 17.5%);
+    --color-background: hsl(262 100% 5%);
+    --color-foreground: hsl(0 0% 98%);
+    --color-primary: hsl(262 83% 65%);
+    --color-primary-foreground: hsl(0 0% 100%);
+    --color-secondary: hsl(262 50% 12%);
+    --color-secondary-foreground: hsl(0 0% 98%);
+    --color-accent: hsl(292 83% 65%);
+    --color-accent-foreground: hsl(0 0% 100%);
+    --color-muted: hsl(262 50% 10%);
+    --color-muted-foreground: hsl(262 30% 70%);
+    --color-border: hsl(262 30% 20%);
+    --color-ring: hsl(262 83% 65%);
   }
 }
+
 /* Base styles */
 * {
   border-color: var(--color-border);
@@ -43,12 +56,16 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  opacity: 0.8;
+  background: linear-gradient(135deg, hsl(262 83% 65%), hsl(292 83% 65%));
 }
 
 /* Smooth scrolling */
@@ -56,7 +73,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom animations */
+/* Custom animations with purple theme */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -119,6 +136,66 @@ html {
   }
 }
 
+@keyframes purple-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6),
+      0 0 60px rgba(168, 85, 247, 0.3);
+  }
+}
+
+@keyframes holographic-morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 60% 30% 70% 40%;
+  }
+  75% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateX(20px) translateY(-15px) scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-15px) translateY(10px) scale(0.8);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateX(10px) translateY(15px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 /* Utility classes for animations */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
@@ -143,4 +220,98 @@ html {
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 3s ease infinite;
+}
+
+.animate-purple-glow {
+  animation: purple-glow 2s ease-in-out infinite;
+}
+
+.animate-holographic-morph {
+  animation: holographic-morph 8s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+/* Purple-specific utility classes */
+.glass-purple {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+}
+
+.purple-gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
+}
+
+.purple-glow {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.3),
+    0 0 100px rgba(168, 85, 247, 0.2), 0 0 150px rgba(192, 132, 252, 0.1);
+}
+
+.holographic-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #8b5cf6, #a855f7, #c084fc, #d946ef)
+    border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Selection styles with purple */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: var(--color-foreground);
+}
+
+::-moz-selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: var(--color-foreground);
+}
+
+/* Focus states with purple */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .glass-purple {
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -23,7 +23,7 @@
     --color-border: hsl(217.2 32.6% 17.5%);
   }
 }
-*/
+
 /* Base styles */
 * {
   border-color: var(--color-border);
