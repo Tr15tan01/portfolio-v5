@@ -14,7 +14,7 @@ const projects = [
     technologies: ["Next.js", "Stripe", "Prisma", "Tailwind"],
     image: "/project1.jpg",
     github: "#",
-    live: "#",
+    live: "https://next-store-pi-nine.vercel.app/",
   },
   {
     title: "AI Content Generator",
@@ -26,13 +26,13 @@ const projects = [
     live: "#",
   },
   {
-    title: "Health & Fitness App",
+    title: "Task Manager Percentage",
     description:
-      "Comprehensive fitness tracking application with workout plans and progress analytics.",
-    technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
+      "Comprehensive Task Manager app with completed percentage and progress analytics.",
+    technologies: ["Nextjs", "TailwindCss", "ShadcnUi", "TypeScript"],
     image: "/project3.jpg",
     github: "#",
-    live: "#",
+    live: "https://tasksreminderapp.netlify.app/",
   },
 ];
 
@@ -129,6 +129,8 @@ export const ProjectsSection = () => {
                       </motion.a>
                       <motion.a
                         href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
