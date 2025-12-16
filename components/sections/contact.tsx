@@ -42,14 +42,14 @@ export const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@creative.dev",
+      value: "t.varamashvili@gmail.com",
       description: "Direct line to my inbox",
       color: "from-purple-500 to-pink-500",
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco",
+      value: "Tbilisi, Georgia",
       description: "Available worldwide",
       color: "from-violet-500 to-purple-500",
     },
@@ -59,7 +59,7 @@ export const ContactSection = () => {
     {
       icon: Github,
       name: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Tr15tan01",
       color: "hover:bg-purple-500/20",
     },
     {
