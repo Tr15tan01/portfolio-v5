@@ -157,7 +157,7 @@ export const ProjectsSection = () => {
             Interested in seeing more?
           </p>
           <motion.a
-            href="#contact"
+            href="/projects"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
