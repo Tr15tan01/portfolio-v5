@@ -136,7 +136,7 @@ export const HeroSection = () => {
         </motion.div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background/80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-80% to-background pointer-events-none" />
     </section>
   );
 };
