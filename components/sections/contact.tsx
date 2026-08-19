@@ -14,6 +14,9 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
+import { portfolio } from "@/lib/portfolio";
+
+const ICONS = { Mail, MapPin, Github, Linkedin, Twitter } as const;
 
 export const ContactSection = () => {
   const containerVariants = {
@@ -38,43 +41,27 @@ export const ContactSection = () => {
     },
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "t.varamashvili@gmail.com",
-      description: "Direct line to my inbox",
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Tbilisi, Georgia",
-      description: "Available worldwide",
-      color: "from-violet-500 to-purple-500",
-    },
-  ];
+  const colorByTitle: Record<string, string> = {
+    Email: "from-purple-500 to-pink-500",
+    Location: "from-violet-500 to-purple-500",
+  };
+  const hoverByName: Record<string, string> = {
+    GitHub: "hover:bg-purple-500/20",
+    LinkedIn: "hover:bg-blue-500/20",
+    Twitter: "hover:bg-sky-500/20",
+  };
 
-  const socialLinks = [
-    {
-      icon: Github,
-      name: "GitHub",
-      url: "https://github.com/Tr15tan01",
-      color: "hover:bg-purple-500/20",
-    },
-    {
-      icon: Linkedin,
-      name: "LinkedIn",
-      url: "https://linkedin.com",
-      color: "hover:bg-blue-500/20",
-    },
-    {
-      icon: Twitter,
-      name: "Twitter",
-      url: "https://twitter.com",
-      color: "hover:bg-sky-500/20",
-    },
-  ];
+  const contactInfo = portfolio.contact.info.map((item) => ({
+    ...item,
+    icon: ICONS[item.icon as keyof typeof ICONS],
+    color: colorByTitle[item.title] ?? "from-purple-500 to-pink-500",
+  }));
+
+  const socialLinks = portfolio.contact.socialLinks.map((link) => ({
+    ...link,
+    icon: ICONS[link.icon as keyof typeof ICONS],
+    color: hoverByName[link.name] ?? "hover:bg-purple-500/20",
+  }));
 
   return (
     <section id="contact" className="min-h-screen relative py-20">

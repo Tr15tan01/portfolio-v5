@@ -1,34 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { portfolio } from "@/lib/portfolio";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "/projects" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const { brand, items, ctaLabel, ctaHref } = portfolio.nav;
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <nav
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-md border-b"
           : "bg-transparent"
@@ -36,72 +28,61 @@ export const Navigation = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <motion.a
-            href="#home"
-            className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
-            whileHover={{ scale: 1.05 }}
+          <Link
+            href="/"
+            className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent transition-transform hover:scale-105"
           >
-            Portfolio
-          </motion.a>
+            {brand}
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.a
+            {items.map((item) => (
+              <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-foreground transition-colors relative"
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                className="text-foreground/80 hover:text-foreground transition-colors relative group"
               >
                 {item.name}
-                <motion.div
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary"
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
             ))}
-            <Button>Get in Touch</Button>
+            <Button asChild>
+              <Link href={ctaHref}>{ctaLabel}</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
+          <button
             className="md:hidden"
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X /> : <Menu />}
-          </motion.button>
+          </button>
         </div>
 
         {/* Mobile Menu */}
-        <motion.div
-          initial={false}
-          animate={{
-            height: isMobileMenuOpen ? "auto" : 0,
-            opacity: isMobileMenuOpen ? 1 : 0,
-          }}
-          className="md:hidden overflow-hidden"
-        >
-          <div className="py-4 space-y-4">
-            {navItems.map((item) => (
-              <motion.a
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 space-y-4">
+            {items.map((item) => (
+              <Link
                 key={item.name}
                 href={item.href}
                 className="block text-foreground/80 hover:text-foreground transition-colors"
-                whileHover={{ x: 10 }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
-              </motion.a>
+              </Link>
             ))}
-            <Button className="w-full">Get in Touch</Button>
+            <Button asChild className="w-full">
+              <Link href={ctaHref} onClick={() => setIsMobileMenuOpen(false)}>
+                {ctaLabel}
+              </Link>
+            </Button>
           </div>
-        </motion.div>
+        )}
       </div>
-    </motion.nav>
+    </nav>
   );
 };

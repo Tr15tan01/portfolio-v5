@@ -1,0 +1,94 @@
+{
+  "site": {
+    "name": "Tristan Varamashvili",
+    "title": "Portfolio - Tristan Varamashvili",
+    "description": "Modern software developer creative portfolio website"
+  },
+
+  "nav": {
+    "brand": "Portfolio",
+    "items": [
+      { "name": "Home", "href": "/#home" },
+      { "name": "Projects", "href": "/projects" },
+      { "name": "About", "href": "/#about" },
+      { "name": "Contact", "href": "/#contact" }
+    ],
+    "ctaLabel": "Get in Touch",
+    "ctaHref": "/#contact"
+  },
+
+  "hero": {
+    "badgeText": "Enter the Realm of Digital Artistry",
+    "headlineTop": "CREATIVE",
+    "headlineBottom": "ARCHITECT",
+    "description": "Where mathematical precision meets creative expression in the digital realm",
+    "primaryButton": { "label": "Explore My Work", "href": "/#projects" },
+    "secondaryButton": { "label": "Download Portfolio", "href": "/resume.pdf" },
+    "stats": [
+      { "number": "100%", "label": "Project Success Rate", "symbol": "\u2726" },
+      { "number": "50+", "label": "Completed Projects", "symbol": "\u2726" },
+      { "number": "100%", "label": "Client Satisfaction", "symbol": "\u267e\ufe0f" }
+    ]
+  },
+
+  "contact": {
+    "info": [
+      {
+        "icon": "Mail",
+        "title": "Email",
+        "value": "t.varamashvili@gmail.com",
+        "description": "Direct line to my inbox"
+      },
+      {
+        "icon": "MapPin",
+        "title": "Location",
+        "value": "Tbilisi, Georgia",
+        "description": "Available worldwide"
+      }
+    ],
+    "socialLinks": [
+      { "icon": "Github", "name": "GitHub", "url": "https://github.com/Tr15tan01" },
+      { "icon": "Linkedin", "name": "LinkedIn", "url": "https://linkedin.com" },
+      { "icon": "Twitter", "name": "Twitter", "url": "https://twitter.com" }
+    ]
+  },
+
+  "projects": [
+    {
+      "id": "ecommerce-platform",
+      "title": "E-Commerce Platform",
+      "description": "A modern e-commerce solution with real-time inventory and payment processing.",
+      "technologies": ["Next.js", "Stripe", "Prisma", "Tailwind"],
+      "image": "/projects/ecommerce-platform.jpg",
+      "emoji": "\ud83d\ude80",
+      "category": "Full Stack",
+      "github": "#",
+      "live": "https://next-store-pi-nine.vercel.app/",
+      "featured": true
+    },
+    {
+      "id": "ai-content-generator",
+      "title": "AI Content Generator",
+      "description": "AI-powered content creation tool with advanced NLP capabilities.",
+      "technologies": ["React", "OpenAI", "Node.js", "MongoDB"],
+      "image": "/projects/ai-content-generator.jpg",
+      "emoji": "\u2728",
+      "category": "AI/ML",
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "id": "task-manager",
+      "title": "Task Manager App",
+      "description": "Comprehensive task manager with completed-percentage tracking and progress analytics.",
+      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
+      "image": "/projects/task-manager.jpg",
+      "emoji": "\u2705",
+      "category": "Web App",
+      "github": "#",
+      "live": "https://tasksreminderapp.netlify.app/",
+      "featured": true
+    }
+  ]
+}
