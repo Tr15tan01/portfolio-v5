@@ -1,142 +1,87 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Download, ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight, FolderOpen } from "lucide-react";
 import { portfolio } from "@/lib/portfolio";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" as const },
-  },
-};
+const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as React.CSSProperties;
 
 export const HeroSection = () => {
-  const { hero } = portfolio;
+  const { hero, site } = portfolio;
 
   return (
     <section
       id="home"
-      className="min-h-screen relative overflow-hidden flex items-center justify-center pt-20"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-24 pb-16"
     >
-      {/* Static grid pattern - no JS animation cost */}
+      {/* Two quiet floating shapes, CSS only */}
+      <div className="absolute top-28 left-[8%] hidden h-28 w-28 rounded-lg border-2 border-purple-300/20 animate-float md:block" aria-hidden="true" />
       <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(90deg, transparent 161px, rgba(139, 92, 246, 0.1) 161px, transparent 162px),
-            linear-gradient(transparent 161px, rgba(139, 92, 246, 0.1) 161px, transparent 162px)
-          `,
-          backgroundSize: "261.8px 261.8px",
-        }}
-      />
-
-      {/* Two subtle CSS-only floating shapes (cheap, GPU-only, respects reduced motion via globals.css) */}
-      <div className="absolute top-20 left-20 w-32 h-32 border-2 border-purple-300/20 rounded-lg animate-float" />
-      <div
-        className="absolute bottom-20 right-20 w-24 h-24 border-2 border-pink-300/20 rounded-full animate-float"
+        className="absolute right-[8%] bottom-24 hidden h-20 w-20 rounded-full border-2 border-pink-300/20 animate-float md:block"
         style={{ animationDelay: "1.5s" }}
+        aria-hidden="true"
       />
 
-      {/* Main content - single entrance animation, plays once, no infinite loops */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center space-y-12"
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 text-center">
+        {site.availability.available && (
+          <Link
+            href="/#contact"
+            className="enter glass-purple inline-flex items-center gap-3 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors hover:border-purple-400/40"
+            style={delay(0)}
+          >
+            <span className="status-dot h-2.5 w-2.5 rounded-full bg-green-500" aria-hidden="true" />
+            <span>{site.availability.text}</span>
+            <ArrowRight className="h-4 w-4 opacity-60" aria-hidden="true" />
+          </Link>
+        )}
+
+        {/* h1 is the LCP element: rendered visible immediately, no entrance animation */}
+        <h1 className="mt-10 text-[clamp(3.25rem,13vw,9rem)] leading-[0.9] font-black tracking-tight">
+          <span className="block purple-gradient-text">{hero.headlineTop}</span>
+          <span className="block purple-gradient-text">{hero.headlineBottom}</span>
+          <span className="sr-only"> | {site.name}, {site.role}</span>
+        </h1>
+
+        <p
+          className="enter mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
+          style={delay(120)}
         >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl glass-purple border border-white/10 shadow-lg transition-transform duration-300 hover:scale-105 hover:-translate-y-0.5"
+          {hero.description}
+        </p>
+
+        <div
+          className="enter mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          style={delay(220)}
+        >
+          <Link
+            href={hero.primaryButton.href}
+            className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 px-9 py-4 text-lg font-bold text-white shadow-xl shadow-purple-500/25 transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:w-auto"
           >
-            <Sparkles className="h-5 w-5 text-purple-400" />
-            <span className="text-lg font-semibold purple-gradient-text">
-              {hero.badgeText}
-            </span>
-            <Star className="h-5 w-5 text-pink-400" />
-          </motion.div>
+            {hero.primaryButton.label}
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
 
-          <motion.div variants={itemVariants} className="space-y-6">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight">
-              <span className="block purple-gradient-text">
-                {hero.headlineTop}
-              </span>
-              <span className="block purple-gradient-text">
-                {hero.headlineBottom}
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-              {hero.description}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
+          <Link
+            href={hero.secondaryButton.href}
+            className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-purple-400/30 bg-background/60 px-9 py-4 text-lg font-bold transition-colors duration-300 hover:border-purple-400/60 hover:bg-purple-500/10 sm:w-auto"
           >
-            <Button
-              asChild
-              size="lg"
-              className="group relative text-xl px-12 py-8 rounded-3xl border-0 text-white font-bold shadow-2xl bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition-transform duration-300 hover:scale-105 active:scale-95"
-            >
-              <Link href={hero.primaryButton.href}>
-                {hero.primaryButton.label}
-                <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
-              </Link>
-            </Button>
+            <FolderOpen className="h-5 w-5 text-purple-500" aria-hidden="true" />
+            {hero.secondaryButton.label}
+          </Link>
+        </div>
 
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="group text-xl px-12 py-8 rounded-3xl border-2 border-purple-400/30 bg-background/60 backdrop-blur-xl hover:bg-purple-500/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              <a href={hero.secondaryButton.href} download>
-                <Download className="mr-4 h-6 w-6 group-hover:translate-y-1 transition-transform duration-300" />
-                {hero.secondaryButton.label}
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-3 gap-12 max-w-2xl mx-auto pt-16"
-          >
-            {hero.stats.map((stat) => (
-              <div key={stat.label} className="text-center group">
-                <div className="text-3xl md:text-4xl font-black purple-gradient-text mb-2">
-                  {stat.number}
-                  <span className="text-lg ml-1 opacity-70">
-                    {stat.symbol}
-                  </span>
-                </div>
-                <div className="text-sm text-muted-foreground font-medium tracking-wide uppercase">
-                  {stat.label}
-                </div>
-                <div className="w-0 group-hover:w-16 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mt-3 transition-all duration-500" />
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
+        <dl
+          className="enter mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-6 md:gap-12"
+          style={delay(320)}
+        >
+          {hero.stats.map((stat) => (
+            <div key={stat.label} className="flex flex-col-reverse">
+              <dt className="mt-2 text-xs font-medium text-muted-foreground md:text-sm">{stat.label}</dt>
+              <dd className="text-3xl font-black purple-gradient-text md:text-4xl">{stat.number}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-80% to-background pointer-events-none" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" aria-hidden="true" />
     </section>
   );
 };

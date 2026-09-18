@@ -1,351 +1,136 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { CalendarCheck, MessageCircle, Send } from "lucide-react";
 import {
-  Mail,
-  MapPin,
-  Send,
-  Github,
-  Linkedin,
-  Twitter,
-  MessageCircle,
-} from "lucide-react";
-import { portfolio } from "@/lib/portfolio";
-
-const ICONS = { Mail, MapPin, Github, Linkedin, Twitter } as const;
+  getSocialLinks,
+  getTelegramUrl,
+  getWhatsappUrl,
+  isPlaceholderUrl,
+  portfolio,
+} from "@/lib/portfolio";
+import { getIcon } from "@/lib/icons";
+import { ContactForm } from "./contact-form";
+import { CopyButton } from "./copy-button";
+import { SectionHeader } from "./section-header";
 
 export const ContactSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const colorByTitle: Record<string, string> = {
-    Email: "from-purple-500 to-pink-500",
-    Location: "from-violet-500 to-purple-500",
-  };
-  const hoverByName: Record<string, string> = {
-    GitHub: "hover:bg-purple-500/20",
-    LinkedIn: "hover:bg-blue-500/20",
-    Twitter: "hover:bg-sky-500/20",
-  };
-
-  const contactInfo = portfolio.contact.info.map((item) => ({
-    ...item,
-    icon: ICONS[item.icon as keyof typeof ICONS],
-    color: colorByTitle[item.title] ?? "from-purple-500 to-pink-500",
-  }));
-
-  const socialLinks = portfolio.contact.socialLinks.map((link) => ({
-    ...link,
-    icon: ICONS[link.icon as keyof typeof ICONS],
-    color: hoverByName[link.name] ?? "hover:bg-purple-500/20",
-  }));
+  const { contact, site } = portfolio;
+  const socials = getSocialLinks();
+  const whatsapp = getWhatsappUrl();
+  const telegram = getTelegramUrl();
+  const booking = isPlaceholderUrl(contact.bookingUrl) ? "" : contact.bookingUrl;
 
   return (
-    <section id="contact" className="min-h-screen relative py-20">
-      {/* Background Elements - More Subtle */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Geometric Grid Background */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `
-                linear-gradient(90deg, transparent 79px, #8b5cf6 79px, transparent 80px),
-                linear-gradient(transparent 79px, #8b5cf6 79px, transparent 80px)
-              `,
-              backgroundSize: "100px 100px",
-            }}
-          />
-        </div>
-
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-6 h-6 border border-purple-400/20 rounded-full"
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.7, 0.3],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+    <section id="contact" aria-labelledby="contact-title" className="relative py-24">
+      <div className="container mx-auto px-4">
+        <SectionHeader
+          id="contact-title"
+          title="Let's talk"
+          subtitle={
+            <>
+              Tell me what you need. I reply within{" "}
+              <span className="font-semibold text-purple-600 dark:text-purple-400">{site.responseTime}</span> with
+              questions or a quote.
+            </>
+          }
         />
 
-        <motion.div
-          className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-pink-400/30 rounded-lg"
-          animate={{
-            y: [0, 25, 0],
-            x: [0, -15, 0],
-            rotate: [0, 180, 360],
-            scale: [1, 1.8, 1],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="max-w-5xl mx-auto"
-        >
-          {/* Header - New Design */}
-          <motion.div variants={itemVariants} className="text-center mb-20">
-            <motion.div
-              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-200/20 mb-8"
-              whileHover={{
-                scale: 1.05,
-                background:
-                  "linear-gradient(to right, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15))",
-              }}
-            >
-              <MessageCircle className="h-5 w-5 text-purple-400" />
-              <span className="text-lg font-semibold purple-gradient-text">
-                Ready to Create Magic?
-              </span>
-            </motion.div>
-
-            <motion.h2
-              className="text-6xl md:text-7xl font-black mb-8"
-              whileHover={{ scale: 1.02 }}
-            >
-              <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent bg-size-200 animate-gradient-shift">
-                Let&apos;s Talk
-              </span>
-            </motion.h2>
-
-            <motion.p
-              className="text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-              whileHover={{ scale: 1.01 }}
-            >
-              Your vision, my expertise. Let&apos;s build something{" "}
-              <span className="text-purple-400 font-semibold">
-                extraordinary
-              </span>{" "}
-              together.
-            </motion.p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-5 gap-8 items-start">
-            {/* Contact Information - Sidebar Style */}
-            <motion.div
-              variants={itemVariants}
-              className="lg:col-span-2 space-y-8"
-            >
-              {/* Contact Cards - Vertical Stack */}
-              <div className="space-y-6">
-                {/* {contactInfo.map((item, index) => ( */}
-                {contactInfo.map((item) => (
-                  <motion.div
-                    key={item.title}
-                    variants={itemVariants}
-                    whileHover={{ x: 8, scale: 1.03 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                    className="group cursor-pointer"
-                  >
-                    <Card className="bg-gradient-to-br from-background/50 to-background/30 border-l-4 border-purple-400/50 hover:border-purple-400 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-purple-500/10">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4">
-                          <motion.div
-                            className={`p-3 rounded-xl bg-gradient-to-br ${item.color} shadow-lg`}
-                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <item.icon className="h-5 w-5 text-white" />
-                          </motion.div>
-                          <div>
-                            <h4 className="font-bold text-foreground text-lg group-hover:text-purple-400 transition-colors mb-1">
-                              {item.title}
-                            </h4>
-                            <p className="text-foreground/80 font-medium text-sm">
-                              {item.value}
-                            </p>
-                            <p className="text-muted-foreground text-xs mt-1">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Social Links - Compact Grid */}
-              <motion.div variants={itemVariants} className="pt-6">
-                <h4 className="font-bold text-foreground text-lg mb-4">
-                  Follow the Journey
-                </h4>
-                <div className="grid grid-cols-3 gap-3">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={social.name}
-                      href={social.url}
-                      className={`p-4 rounded-xl bg-background/50 border border-purple-200/20 text-muted-foreground ${social.color} hover:text-foreground transition-all duration-300 flex flex-col items-center gap-2 group`}
-                      whileHover={{ y: -4, scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      variants={itemVariants}
-                      custom={index}
-                    >
-                      <social.icon className="h-5 w-5" />
-                      <span className="text-xs font-medium">{social.name}</span>
-                    </motion.a>
-                  ))}
+        <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-5">
+          {/* Sidebar */}
+          <aside className="space-y-6 lg:col-span-2">
+            {contact.info.map((item) => {
+              const Icon = getIcon(item.icon);
+              const isEmail = item.icon === "Mail";
+              return (
+                <div key={item.title} className="glass-purple rounded-2xl border-l-4 border-l-purple-400/60 p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="shrink-0 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 p-3 shadow-lg">
+                      <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold">{item.title}</h3>
+                      {isEmail ? (
+                        <a href={`mailto:${item.value}`} className="block truncate text-sm font-medium hover:underline">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-medium">{item.value}</p>
+                      )}
+                      <p className="mt-0.5 text-xs text-muted-foreground">{item.description}</p>
+                    </div>
+                    {isEmail && <CopyButton value={item.value} label="Copy email address" />}
+                  </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              );
+            })}
 
-            {/* Contact Form - Main Focus */}
-            <motion.div variants={itemVariants} className="lg:col-span-3">
-              <Card className="bg-gradient-to-br from-background/60 to-background/40 border border-purple-200/30 shadow-2xl backdrop-blur-xl">
-                <CardContent className="p-8">
-                  <motion.form
-                    className="space-y-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
+            {(booking || whatsapp || telegram) && (
+              <div className="glass-purple space-y-3 rounded-2xl p-5">
+                <h3 className="font-bold">Prefer to chat?</h3>
+                {booking && (
+                  <a
+                    href={booking}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-3 font-semibold text-white transition-opacity hover:opacity-90"
                   >
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-semibold text-foreground"
+                    <CalendarCheck className="h-5 w-5" aria-hidden="true" />
+                    Book a free 20-min call
+                  </a>
+                )}
+                {whatsapp && (
+                  <a
+                    href={whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 font-semibold transition-colors hover:bg-green-500/20"
+                  >
+                    <MessageCircle className="h-5 w-5 text-green-600" aria-hidden="true" />
+                    Message on WhatsApp
+                  </a>
+                )}
+                {telegram && (
+                  <a
+                    href={telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-sky-500/30 bg-sky-500/10 px-4 py-3 font-semibold transition-colors hover:bg-sky-500/20"
+                  >
+                    <Send className="h-5 w-5 text-sky-500" aria-hidden="true" />
+                    Message on Telegram
+                  </a>
+                )}
+              </div>
+            )}
+
+            {socials.length > 0 && (
+              <div>
+                <h3 className="mb-3 font-bold">Find me online</h3>
+                <ul className="flex flex-wrap gap-3">
+                  {socials.map((s) => {
+                    const Icon = getIcon(s.icon);
+                    return (
+                      <li key={s.name}>
+                        <a
+                          href={s.url}
+                          target="_blank"
+                          rel="noopener noreferrer me"
+                          className="glass-purple flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors hover:border-purple-400/50"
                         >
-                          Your Name *
-                        </label>
-                        <Input
-                          id="name"
-                          placeholder="Enter your full name"
-                          className="bg-background/70 border-2 border-purple-200/30 focus:border-purple-400 focus:bg-background transition-all duration-300 placeholder:text-muted-foreground/60"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-semibold text-foreground"
-                        >
-                          Email Address *
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          className="bg-background/70 border-2 border-purple-200/30 focus:border-purple-400 focus:bg-background transition-all duration-300 placeholder:text-muted-foreground/60"
-                        />
-                      </div>
-                    </div>
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                          {s.name}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </aside>
 
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-semibold text-foreground"
-                      >
-                        Project Type
-                      </label>
-                      <Input
-                        id="subject"
-                        placeholder="Web App, Mobile, Design, etc."
-                        className="bg-background/70 border-2 border-purple-200/30 focus:border-purple-400 focus:bg-background transition-all duration-300 placeholder:text-muted-foreground/60"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-semibold text-foreground"
-                      >
-                        Your Vision *
-                      </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Describe your project, timeline, and what you're looking to achieve..."
-                        rows={6}
-                        className="bg-background/70 border-2 border-purple-200/30 focus:border-purple-400 focus:bg-background resize-none transition-all duration-300 placeholder:text-muted-foreground/60 leading-relaxed"
-                      />
-                    </div>
-
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <Button
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-6 rounded-2xl shadow-2xl hover:shadow-3xl hover:shadow-purple-500/30 transition-all duration-500 group"
-                      >
-                        <span className="flex items-center justify-center text-lg">
-                          Launch Project
-                          <Send className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                      </Button>
-                    </motion.div>
-
-                    <motion.p
-                      className="text-center text-sm text-muted-foreground pt-4"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.2 }}
-                    >
-                      Typically reply within{" "}
-                      <span className="text-purple-400 font-semibold">
-                        24 hours
-                      </span>
-                    </motion.p>
-                  </motion.form>
-                </CardContent>
-              </Card>
-            </motion.div>
+          {/* Form */}
+          <div className="lg:col-span-3">
+            <ContactForm />
           </div>
-
-          {/* Footer Quote */}
-          <motion.div
-            variants={itemVariants}
-            className="text-center mt-20 pt-12 border-t border-purple-200/10"
-          >
-            <motion.p
-              className="text-lg text-muted-foreground italic max-w-2xl mx-auto"
-              whileHover={{ scale: 1.02 }}
-            >
-              &quot;Every great design begins with an even better story.&quot;
-              <span className="block text-sm text-purple-400 mt-2 not-italic">
-                - Let&apos;s write yours together
-              </span>
-            </motion.p>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

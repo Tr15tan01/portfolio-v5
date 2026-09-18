@@ -1,534 +1,177 @@
-"use client";
+import Link from "next/link";
+import { Heart, Zap, Sparkles, ArrowRight, FolderOpen } from "lucide-react";
+import { portfolio } from "@/lib/portfolio";
+import { getIcon } from "@/lib/icons";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Download,
-  Award,
-  Clock,
-  Users,
-  Sparkles,
-  Rocket,
-  Heart,
-  Zap,
-} from "lucide-react";
+const principles = [
+  {
+    icon: Heart,
+    title: "Driven by passion",
+    description:
+      "I don't just write code, I care how it feels to use. Every project gets the attention I'd give my own product.",
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    icon: Zap,
+    title: "Modern, proven tech",
+    description:
+      "I use current, well-supported tools so your site is fast today and easy to maintain and extend tomorrow.",
+    color: "from-purple-500 to-violet-500",
+  },
+  {
+    icon: Sparkles,
+    title: "Pixel perfection",
+    description:
+      "Details matter: spacing, loading states, mobile layouts, accessibility. That polish is what makes visitors trust you.",
+    color: "from-blue-500 to-cyan-500",
+  },
+];
 
 export const AboutSection = () => {
-  const stats = [
-    {
-      icon: Clock,
-      value: "8+",
-      label: "Years Excellence",
-      description: "Mastering digital craftsmanship",
-    },
-    {
-      icon: Users,
-      value: "50+",
-      label: "Happy Clients",
-      description: "Worldwide satisfaction",
-    },
-    {
-      icon: Award,
-      value: "100%",
-      label: "Success Rate",
-      description: "Projects delivered on time",
-    },
-    {
-      icon: Rocket,
-      value: "24/7",
-      label: "Creative Fuel",
-      description: "Passion never sleeps",
-    },
-  ];
-
-  const principles = [
-    {
-      icon: Heart,
-      title: "Driven by Passion",
-      description:
-        "I don't just write code—I breathe life into digital experiences. Every project is a masterpiece waiting to happen.",
-      color: "from-pink-500 to-rose-500",
-    },
-    {
-      icon: Zap,
-      title: "Innovation First",
-      description:
-        "Staying ahead of the curve with cutting-edge technologies and forward-thinking solutions that set new standards.",
-      color: "from-purple-500 to-violet-500",
-    },
-    {
-      icon: Sparkles,
-      title: "Pixel Perfection",
-      description:
-        "Obsessive attention to detail. Every animation, every interaction, every pixel matters in creating magic.",
-      color: "from-blue-500 to-cyan-500",
-    },
-  ];
+  const { about, site } = portfolio;
 
   return (
-    <section id="about" className="min-h-screen relative py-20 overflow-hidden">
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+    <section id="about" aria-labelledby="about-title" className="relative overflow-hidden py-24">
+      <div
+        className="pointer-events-none absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgb(168_85_247/0.12),transparent_65%)]"
+        aria-hidden="true"
+      />
 
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
-        @keyframes scalePulse {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.2);
-          }
-        }
-
-        @keyframes rotate {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes shimmer {
-          0% {
-            background-position: -1000px 0;
-          }
-          100% {
-            background-position: 1000px 0;
-          }
-        }
-
-        @keyframes gradientShift {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-
-        @keyframes bounce {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
-        }
-
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 1s ease-out forwards;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-scale-pulse {
-          animation: scalePulse 8s ease-in-out infinite;
-        }
-
-        .animate-rotate {
-          animation: rotate 10s linear infinite;
-        }
-
-        .animate-gradient-shift {
-          background-size: 200% auto;
-          animation: gradientShift 3s linear infinite;
-        }
-
-        .animate-bounce-delayed {
-          animation: bounce 2s ease-in-out infinite;
-        }
-
-        .shimmer-button {
-          background: linear-gradient(
-            90deg,
-            #8b5cf6 0%,
-            #d946ef 50%,
-            #8b5cf6 100%
-          );
-          background-size: 200% auto;
-          animation: shimmer 2s linear infinite;
-        }
-
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-
-        .animate-on-scroll.in-view {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .animate-stagger > *:nth-child(1) {
-          transition-delay: 0.1s;
-        }
-        .animate-stagger > *:nth-child(2) {
-          transition-delay: 0.2s;
-        }
-        .animate-stagger > *:nth-child(3) {
-          transition-delay: 0.3s;
-        }
-        .animate-stagger > *:nth-child(4) {
-          transition-delay: 0.4s;
-        }
-        .animate-stagger > *:nth-child(5) {
-          transition-delay: 0.5s;
-        }
-        .animate-stagger > *:nth-child(6) {
-          transition-delay: 0.6s;
-        }
-
-        .hover-scale:hover {
-          transform: scale(1.02);
-          transition: transform 0.3s ease-out;
-        }
-
-        .hover-lift:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
-          transition: all 0.3s ease-out;
-        }
-
-        .hover-glow:hover {
-          box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
-          transition: box-shadow 0.3s ease-out;
-        }
-
-        /* Performance optimizations */
-        * {
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          transform-style: preserve-3d;
-          will-change: transform, opacity;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-      `}</style>
-
-      {/* Cosmic Background */}
-      <div className="absolute inset-0">
-        {/* Animated Nebula */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-scale-pulse opacity-40" />
-
-        {/* Floating Code Elements */}
-        {["</>", "{ }", "=>", "⚡"].map((symbol, index) => (
-          <div
-            key={symbol}
-            className="absolute text-purple-400/20 font-mono text-2xl font-bold animate-float"
-            style={{
-              top: `${20 + index * 15}%`,
-              left: `${80 + index * 5}%`,
-              animationDelay: `${index * 1.5}s`,
-              animationDuration: `${10 + index * 2}s`,
-            }}
-          >
-            {symbol}
-          </div>
-        ))}
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div
-          className="max-w-6xl mx-auto animate-on-scroll"
-          id="scroll-container"
-        >
-          {/* Hero Introduction */}
-          <div className="text-center mb-20 animate-on-scroll">
-            <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-200/20 mb-8 hover-scale">
-              <Sparkles className="h-5 w-5 text-purple-400 animate-bounce-delayed" />
-              <span className="text-lg font-semibold purple-gradient-text">
-                The Architect Behind the Magic
-              </span>
-            </div>
-
-            <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight hover-scale">
-              <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent animate-gradient-shift">
-                Crafting
-              </span>
-              <br />
-              <span
-                className="bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 bg-clip-text text-transparent animate-gradient-shift"
-                style={{ animationDelay: "0.3s" }}
-              >
-                Digital
-              </span>
-              <br />
-              <span
-                className="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent animate-gradient-shift"
-                style={{ animationDelay: "0.6s" }}
-              >
-                Legends
-              </span>
-            </h1>
-
-            <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed hover-scale">
-              I don&apos;t build websites—I create{" "}
-              <span className="text-purple-400 font-semibold">
-                digital experiences
-              </span>{" "}
-              that captivate, innovate, and{" "}
-              <span className="text-pink-400 font-semibold">
-                transform businesses
-              </span>
-              .
+      <div className="relative z-10 container mx-auto px-4">
+        <div className="mx-auto max-w-6xl">
+          {/* Intro */}
+          <div className="reveal mb-16 text-center">
+            <p className="glass-purple mb-8 inline-flex items-center gap-3 rounded-2xl px-6 py-3">
+              <Sparkles className="h-5 w-5 text-purple-500" aria-hidden="true" />
+              <span className="font-semibold purple-gradient-text">The developer behind the work</span>
             </p>
-          </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20 animate-stagger">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className="text-center group animate-on-scroll"
-              >
-                <Card className="glass-purple border-purple-200/20 hover:border-purple-400/40 transition-all duration-500 hover-lift">
-                  <CardContent className="p-6">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl mb-4 group-hover:from-purple-500/30 group-hover:to-pink-500/30 transition-all duration-500 group-hover:animate-rotate">
-                      <stat.icon className="h-6 w-6 text-purple-400" />
-                    </div>
-                    <h3 className="text-3xl font-black purple-gradient-text mb-2">
-                      {stat.value}
-                    </h3>
-                    <p className="font-semibold text-foreground mb-1">
-                      {stat.label}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {stat.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
-            {/* Passion Story */}
-            <div className="space-y-6 animate-on-scroll">
-              <h2 className="text-4xl md:text-5xl font-black purple-gradient-text mb-6 hover-scale">
-                Why Work With Me?
-              </h2>
-
-              <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                <p className="hover-scale">
-                  When you choose to work with me, you&apos;re not just hiring a
-                  developer—you&apos;re gaining a{" "}
-                  <span className="text-purple-400 font-semibold">
-                    strategic partner
-                  </span>{" "}
-                  who&apos;s as invested in your success as you are.
-                </p>
-
-                <p className="hover-scale">
-                  I bridge the gap between{" "}
-                  <span className="text-pink-400 font-semibold">
-                    vision and reality
-                  </span>
-                  , transforming complex ideas into elegant, user-loving digital
-                  solutions that don&apos;t just meet expectations—they shatter
-                  them.
-                </p>
-
-                <p className="hover-scale">
-                  My approach is simple: understand your{" "}
-                  <span className="text-violet-400 font-semibold">
-                    deepest goals
-                  </span>
-                  , anticipate your needs before you do, and deliver solutions
-                  that not only work flawlessly but tell your unique story in
-                  ways that resonate and convert.
-                </p>
-              </div>
-
-              <div className="pt-6">
-                <Button
-                  size="lg"
-                  className="shimmer-button group text-lg px-8 py-6 rounded-2xl border-0 text-white font-bold shadow-2xl hover-glow hover-scale"
-                >
-                  <span className="relative z-10 flex items-center">
-                    Let&apos;s Build Your Legacy
-                    <Rocket className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </div>
-            </div>
-
-            {/* Core Principles */}
-            <div className="space-y-6 animate-on-scroll">
-              <h3 className="text-3xl font-black purple-gradient-text mb-8 hover-scale">
-                My Creative Philosophy
-              </h3>
-
-              <div className="space-y-6">
-                {principles.map((principle, index) => (
-                  <div
-                    key={principle.title}
-                    className="group cursor-pointer animate-on-scroll"
-                    style={{ transitionDelay: `${index * 0.2}s` }}
-                  >
-                    <Card className="bg-gradient-to-br from-background/50 to-background/30 border-l-4 border-purple-400/50 hover:border-purple-400 transition-all duration-500 hover-lift">
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <div
-                            className={`p-3 rounded-xl bg-gradient-to-br ${principle.color} shadow-lg flex-shrink-0 group-hover:animate-rotate`}
-                          >
-                            <principle.icon className="h-6 w-6 text-white" />
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-xl text-foreground group-hover:text-purple-400 transition-colors mb-2">
-                              {principle.title}
-                            </h4>
-                            <p className="text-muted-foreground leading-relaxed">
-                              {principle.description}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 rounded-3xl p-12 border border-purple-200/20 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 hover-scale">
-              <span className="purple-gradient-text">Ready to Create</span>
+            <h2 id="about-title" className="text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-black tracking-tight purple-gradient-text">
+              Crafting digital
               <br />
-              <span
-                className="purple-gradient-text"
-                style={{ animationDelay: "0.3s" }}
-              >
-                Something Epic?
-              </span>
+              experiences
             </h2>
 
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto hover-scale">
-              Your next groundbreaking project is waiting. Let&apos;s combine
-              your vision with my expertise to build something that not only
-              succeeds but dominates.
+            <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed text-muted-foreground md:text-2xl">
+              I&apos;m {site.name.split(" ")[0]}, a {site.role.toLowerCase()} in {site.location}. I don&apos;t
+              just build websites, I build{" "}
+              <span className="font-semibold text-purple-600 dark:text-purple-400">digital experiences</span> that
+              help{" "}
+              <span className="font-semibold text-pink-600 dark:text-pink-400">businesses grow</span>.
             </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <div>
-                <Button
-                  size="lg"
-                  className="shimmer-button group text-lg px-8 py-6 rounded-2xl border-0 text-white font-bold shadow-2xl hover-glow hover-scale"
-                >
-                  <span className="relative z-10 flex items-center">
-                    Start Your Project
-                    <Sparkles className="ml-3 h-5 w-5 group-hover:scale-110 transition-transform" />
-                  </span>
-                </Button>
+          {/* Stats */}
+          <div className="mb-20 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+            {about.stats.map((stat) => {
+              const Icon = getIcon(stat.icon);
+              return (
+                <div key={stat.label} className="reveal lift glass-purple rounded-2xl p-6 text-center">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+                    <Icon className="h-6 w-6 text-purple-500" aria-hidden="true" />
+                  </div>
+                  <p className="text-3xl font-black purple-gradient-text">{stat.value}</p>
+                  <p className="mt-1 font-semibold">{stat.label}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{stat.description}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Story + principles */}
+          <div className="mb-20 grid items-start gap-12 lg:grid-cols-2">
+            <div className="reveal space-y-6">
+              <h3 className="section-heading purple-gradient-text">Why work with me?</h3>
+
+              <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  You&apos;re not just hiring a developer, you&apos;re getting a{" "}
+                  <span className="font-semibold text-purple-600 dark:text-purple-400">partner</span> who&apos;s as
+                  invested in the result as you are.
+                </p>
+                <p>
+                  I bridge the gap between{" "}
+                  <span className="font-semibold text-pink-600 dark:text-pink-400">vision and reality</span>, turning
+                  complex ideas into clear, easy-to-use products.
+                </p>
+                <p>
+                  My approach is simple: understand your goals, communicate clearly, and ship work that performs,
+                  on time and within budget.
+                </p>
               </div>
 
               <div>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="group text-lg px-8 py-6 rounded-2xl border-2 border-purple-400/30 bg-background/50 backdrop-blur-xl hover:bg-purple-500/10 hover:border-purple-400/50 transition-all duration-500 hover-glow hover-scale"
-                >
-                  <Download className="mr-3 h-5 w-5 group-hover:translate-y-0.5 transition-transform" />
-                  Download Portfolio
-                </Button>
+                <h4 className="mb-3 text-sm font-semibold text-muted-foreground">Tools I work with</h4>
+                <ul className="flex flex-wrap gap-2">
+                  {about.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-lg border border-purple-400/20 bg-purple-500/10 px-3 py-1 text-sm font-medium text-purple-700 dark:text-purple-300"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
               </div>
+
+              <Link
+                href="/#contact"
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 px-8 py-4 text-lg font-bold text-white shadow-xl shadow-purple-500/25 transition-transform hover:scale-[1.03]"
+              >
+                Let&apos;s talk about your project
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="reveal text-3xl font-black purple-gradient-text">My approach</h3>
+              {principles.map((p) => (
+                <div
+                  key={p.title}
+                  className="reveal lift glass-purple rounded-2xl border-l-4 border-l-purple-400/60 p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`shrink-0 rounded-xl bg-gradient-to-br ${p.color} p-3 shadow-lg`}>
+                      <p.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h4 className="mb-2 text-xl font-bold">{p.title}</h4>
+                      <p className="leading-relaxed text-muted-foreground">{p.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Inspirational Footer */}
-          <div className="text-center mt-20 pt-12 border-t border-purple-200/10 animate-on-scroll">
-            <p className="text-2xl text-muted-foreground italic max-w-3xl mx-auto hover-scale">
-              &quot;I don&apos;t just write code—I architect experiences that
-              users fall in love with and competitors wish they&apos;d thought
-              of first.&quot;
+          {/* CTA */}
+          <div className="reveal rounded-3xl border border-purple-400/20 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 p-8 text-center md:p-12">
+            <h3 className="section-heading purple-gradient-text">Ready to create something great?</h3>
+            <p className="mx-auto mt-6 mb-8 max-w-2xl text-xl text-muted-foreground">
+              Tell me about your idea. You&apos;ll get an honest opinion, a plan and a fixed quote, free and with no
+              obligation.
             </p>
-            <div className="flex justify-center gap-6 mt-8 animate-fade-in">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 h-2 bg-purple-400 rounded-full animate-scale-pulse"
-                  style={{
-                    animationDelay: `${i * 0.2}s`,
-                    opacity: 0.5,
-                  }}
-                />
-              ))}
+
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                href="/#contact"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 px-8 py-4 text-lg font-bold text-white shadow-xl shadow-purple-500/25 transition-transform hover:scale-[1.03] sm:w-auto"
+              >
+                Start your project
+                <Sparkles className="h-5 w-5" aria-hidden="true" />
+              </Link>
+              {/* Replaces the old "Download Portfolio" button (there was no file behind it) */}
+              <Link
+                href="/projects"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-2xl border-2 border-purple-400/30 bg-background/50 px-8 py-4 text-lg font-bold transition-colors hover:border-purple-400/60 hover:bg-purple-500/10 sm:w-auto"
+              >
+                <FolderOpen className="h-5 w-5 text-purple-500" aria-hidden="true" />
+                Browse all projects
+              </Link>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll Observer Script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              const observer = new IntersectionObserver(
-                (entries) => {
-                  entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                      entry.target.classList.add('in-view');
-                    }
-                  });
-                },
-                { threshold: 0.1, rootMargin: '-100px' }
-              );
-
-              document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-                observer.observe(el);
-              });
-            })();
-          `,
-        }}
-      />
     </section>
   );
 };

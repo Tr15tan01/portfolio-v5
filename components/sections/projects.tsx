@@ -1,82 +1,39 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { MagicCard } from "@/components/animations/magic-card";
 import { ProjectCard } from "@/components/sections/project-card";
 import { getFeaturedProjects } from "@/lib/portfolio";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
-
-const cardVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
+import { SectionHeader } from "./section-header";
 
 export const ProjectsSection = () => {
   const projects = getFeaturedProjects();
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" aria-labelledby="projects-title" className="py-24">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Here are some of my recent works that showcase my skills and
-            passion for development
-          </p>
-        </motion.div>
+        <SectionHeader
+          id="projects-title"
+          title="Featured projects"
+          subtitle="Recent work. Like one? Ask me to build something similar for your business."
+        />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <motion.div key={project.id} variants={cardVariants}>
-              <MagicCard className="h-full">
-                <ProjectCard project={project} />
-              </MagicCard>
-            </motion.div>
+            <MagicCard key={project.id} className="reveal h-full">
+              <ProjectCard project={project} />
+            </MagicCard>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-lg text-muted-foreground mb-6">
-            Interested in seeing more?
-          </p>
+        <div className="mt-14 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:from-purple-700 hover:to-pink-600 transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-purple-400/30 px-7 py-3 font-semibold transition-colors hover:border-purple-400/60 hover:bg-purple-500/10"
           >
-            View Full Portfolio
-            <ExternalLink className="h-4 w-4" />
+            View all projects
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
