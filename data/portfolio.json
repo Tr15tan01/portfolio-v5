@@ -189,6 +189,28 @@
       "featured": true
     },
     {
+      "id": "ai-memory-agent",
+      "title": "AI Memory Agent",
+      "description": "AI-powered memory retrieval tool with advanced NLP capabilities.",
+      "technologies": ["React", "Gemini", "Node.js", "Postgresql"],
+      "image": "",
+      "emoji": "✨",
+      "category": "AI/ML",
+      "live": "https://gonebia.vercel.app/",
+      "featured": true
+    },
+    {
+      "id": "ai-job-trainer",
+      "title": "AI Job Trainer Jobready",
+      "description": "AI-powered interview training.",
+      "technologies": ["React", "Gemini", "Node.js", "Postgresql"],
+      "image": "",
+      "emoji": "✨",
+      "category": "AI/ML",
+      "live": "https://frontend-khaki-two-25.vercel.app/",
+      "featured": true
+    },
+    {
       "id": "ai-content-generator",
       "title": "AI Content Generator",
       "description": "AI-powered content creation tool with advanced NLP capabilities.",
@@ -197,7 +219,7 @@
       "emoji": "✨",
       "category": "AI/ML",
       "live": "",
-      "featured": true
+      "featured": false
     },
     {
       "id": "task-manager",
@@ -208,7 +230,7 @@
       "emoji": "✅",
       "category": "Web App",
       "live": "https://tasksreminderapp.netlify.app/",
-      "featured": true
+      "featured": false
     }
   ]
 }
