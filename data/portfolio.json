@@ -231,6 +231,28 @@
       "category": "Web App",
       "live": "https://tasksreminderapp.netlify.app/",
       "featured": false
+    },
+    {
+      "id": "vocabulary-app",
+      "title": "Vocabulary.ge - English Learning App",
+      "description": "English learning app for Georgian spoken people.",
+      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
+      "image": "/projects/task-manager.webp",
+      "emoji": "✅",
+      "category": "Web App",
+      "live": "https://vocabulary.ge",
+      "featured": false
+    },
+    {
+      "id": "needinfind",
+      "title": "Needinfind - online store with AI",
+      "description": "Online Store that finds what you need with AI.",
+      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
+      "image": "/projects/task-manager.webp",
+      "emoji": "✅",
+      "category": "Web App",
+      "live": "https://needinfind.vercel.app",
+      "featured": false
     }
   ]
 }
