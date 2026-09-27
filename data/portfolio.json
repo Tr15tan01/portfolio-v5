@@ -253,6 +253,17 @@
       "category": "Web App",
       "live": "https://needinfind.vercel.app",
       "featured": false
-    }
+    },
+    {
+  "id": "homehaus",
+  "title": "HomeHaus - home decor store with AI stylist",
+  "description": "Home decor and smart home store with an AI shopping and room-styling assistant, Stripe checkout, an admin dashboard, and English/Georgian support.",
+  "technologies": ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe", "Vercel AI SDK"],
+  "image": "/projects/homehaus.webp",
+  "emoji": "🛋️",
+  "category": "Web App",
+  "live": "https://homehaus.vercel.app",
+  "featured": true
+}
   ]
 }
