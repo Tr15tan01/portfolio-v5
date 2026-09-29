@@ -13,6 +13,7 @@ export const SectionHeader = ({
     <h2 id={id} className="section-heading purple-gradient-text">
       {title}
     </h2>
+    <span className="heading-bar" aria-hidden="true" />
     {subtitle && (
       <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">{subtitle}</p>
     )}

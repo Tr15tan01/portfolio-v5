@@ -47,7 +47,11 @@ export default function ProjectsPage() {
 
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, i) => (
-          <MagicCard key={project.id} className="h-full">
+          <MagicCard
+            key={project.id}
+            className={i < 6 ? "enter h-full" : "reveal h-full"}
+            style={i < 6 ? ({ "--delay": `${150 + i * 90}ms` } as React.CSSProperties) : undefined}
+          >
             <ProjectCard project={project} priority={i < 3} />
           </MagicCard>
         ))}

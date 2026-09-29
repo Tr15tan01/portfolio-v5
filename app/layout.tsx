@@ -42,10 +42,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfaff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0514" },
-  ],
+  themeColor: "#0b0514",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -90,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`dark ${inter.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <a
           href="#main"

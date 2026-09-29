@@ -20,60 +20,106 @@
     },
     "responseTime": "24 hours"
   },
-
   "nav": {
     "brand": "Tristan.dev",
     "items": [
-      { "name": "Services", "href": "/#services" },
-      { "name": "Projects", "href": "/projects" },
-      { "name": "About", "href": "/#about" },
-      { "name": "FAQ", "href": "/#faq" },
-      { "name": "Contact", "href": "/#contact" }
+      {
+        "name": "Services",
+        "href": "/#services"
+      },
+      {
+        "name": "Projects",
+        "href": "/projects"
+      },
+      {
+        "name": "About",
+        "href": "/#about"
+      },
+      {
+        "name": "FAQ",
+        "href": "/#faq"
+      },
+      {
+        "name": "Contact",
+        "href": "/#contact"
+      }
     ],
     "ctaLabel": "Hire me",
     "ctaHref": "/#contact"
   },
-
   "hero": {
     "headlineTop": "CREATIVE",
     "headlineBottom": "ARCHITECT",
     "description": "I design and build fast, modern websites and web apps that turn visitors into customers.",
-    "primaryButton": { "label": "Start a project", "href": "/#contact" },
-    "secondaryButton": { "label": "See my work", "href": "/#projects" },
+    "primaryButton": {
+      "label": "Start a project",
+      "href": "/#contact"
+    },
+    "secondaryButton": {
+      "label": "See my work",
+      "href": "/#projects"
+    },
     "stats": [
-      { "number": "50+", "label": "Projects delivered" },
-      { "number": "8+", "label": "Years of experience" },
-      { "number": "24h", "label": "Reply time" }
+      {
+        "number": "50+",
+        "label": "Projects delivered"
+      },
+      {
+        "number": "8+",
+        "label": "Years of experience"
+      },
+      {
+        "number": "24h",
+        "label": "Reply time"
+      }
     ]
   },
-
   "services": [
     {
       "icon": "Globe",
       "title": "Business websites",
       "description": "Fast, SEO-ready websites that explain what you do and get visitors to contact you.",
-      "deliverables": ["Custom design", "Mobile-first", "SEO & analytics setup", "Contact & booking forms"]
+      "deliverables": [
+        "Custom design",
+        "Mobile-first",
+        "SEO & analytics setup",
+        "Contact & booking forms"
+      ]
     },
     {
       "icon": "ShoppingBag",
       "title": "E-commerce stores",
       "description": "Online stores with secure checkout, inventory and an admin you can actually use.",
-      "deliverables": ["Stripe / local payments", "Product management", "Order emails", "Performance-tuned"]
+      "deliverables": [
+        "Stripe / local payments",
+        "Product management",
+        "Order emails",
+        "Performance-tuned"
+      ]
     },
     {
       "icon": "LayoutDashboard",
       "title": "Web apps & dashboards",
       "description": "Custom tools, SaaS MVPs and internal dashboards built on a solid, scalable stack.",
-      "deliverables": ["Auth & user roles", "Database design", "APIs & integrations", "Clean, typed codebase"]
+      "deliverables": [
+        "Auth & user roles",
+        "Database design",
+        "APIs & integrations",
+        "Clean, typed codebase"
+      ]
     },
     {
       "icon": "Gauge",
       "title": "Speed & SEO fixes",
       "description": "Your current site is slow or invisible on Google? I audit it and fix what matters.",
-      "deliverables": ["Core Web Vitals audit", "Load-time fixes", "Technical SEO", "Before/after report"]
+      "deliverables": [
+        "Core Web Vitals audit",
+        "Load-time fixes",
+        "Technical SEO",
+        "Before/after report"
+      ]
     }
   ],
-
   "process": [
     {
       "title": "Free intro call",
@@ -92,9 +138,7 @@
       "description": "I handle deployment, domain and analytics, then stay available for fixes and improvements."
     }
   ],
-
   "testimonials": [],
-
   "faq": [
     {
       "question": "How much does a website cost?",
@@ -117,13 +161,32 @@
       "answer": "Bugs found in the first 30 days are fixed free. After that I offer ongoing support if you need it."
     }
   ],
-
   "about": {
     "stats": [
-      { "icon": "Clock", "value": "8+", "label": "Years building", "description": "For the web since 2017" },
-      { "icon": "Users", "value": "50+", "label": "Happy clients", "description": "Worldwide" },
-      { "icon": "Award", "value": "On time", "label": "Delivery", "description": "Clear milestones" },
-      { "icon": "Rocket", "value": "24h", "label": "Reply time", "description": "On working days" }
+      {
+        "icon": "Clock",
+        "value": "8+",
+        "label": "Years building",
+        "description": "For the web since 2017"
+      },
+      {
+        "icon": "Users",
+        "value": "50+",
+        "label": "Happy clients",
+        "description": "Worldwide"
+      },
+      {
+        "icon": "Award",
+        "value": "On time",
+        "label": "Delivery",
+        "description": "Clear milestones"
+      },
+      {
+        "icon": "Rocket",
+        "value": "24h",
+        "label": "Reply time",
+        "description": "On working days"
+      }
     ],
     "skills": [
       "Next.js",
@@ -140,7 +203,6 @@
       "Figma"
     ]
   },
-
   "contact": {
     "info": [
       {
@@ -167,103 +229,176 @@
       "Speed & SEO fixes",
       "Something else"
     ],
-    "budgets": ["Under $1,000", "$1,000 – $3,000", "$3,000 – $7,000", "$7,000+", "Not sure yet"],
-    "timelines": ["ASAP", "Within a month", "1 – 3 months", "Flexible"],
+    "budgets": [
+      "Under $1,000",
+      "$1,000 – $3,000",
+      "$3,000 – $7,000",
+      "$7,000+",
+      "Not sure yet"
+    ],
+    "timelines": [
+      "ASAP",
+      "Within a month",
+      "1 – 3 months",
+      "Flexible"
+    ],
     "socialLinks": [
-      { "icon": "Github", "name": "GitHub", "url": "https://github.com/Tr15tan01" },
-      { "icon": "Linkedin", "name": "LinkedIn", "url": "https://linkedin.com" },
-      { "icon": "Twitter", "name": "Twitter", "url": "https://twitter.com" }
+      {
+        "icon": "Github",
+        "name": "GitHub",
+        "url": "https://github.com/Tr15tan01"
+      },
+      {
+        "icon": "Linkedin",
+        "name": "LinkedIn",
+        "url": "https://linkedin.com"
+      },
+      {
+        "icon": "Twitter",
+        "name": "Twitter",
+        "url": "https://twitter.com"
+      }
     ]
   },
-
   "projects": [
     {
-      "id": "ecommerce-platform",
-      "title": "E-Commerce Platform",
-      "description": "A modern e-commerce solution with real-time inventory and payment processing.",
-      "technologies": ["Next.js", "Stripe", "Prisma", "Tailwind"],
+      "id": "homehaus",
+      "title": "HomeHaus",
+      "tagline": "Home decor store with an AI stylist",
+      "description": "Aesthetics-first home decor and smart home store. Shoppers browse by room or ask the AI stylist for personalised picks, then pay with Stripe. Includes an admin dashboard and English/Georgian support.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "PostgreSQL",
+        "Stripe",
+        "Vercel AI SDK"
+      ],
       "image": "",
-      "emoji": "🛒",
-      "category": "Full Stack",
-      "live": "https://next-store-pi-nine.vercel.app/",
-      "featured": false
+      "icon": "Sofa",
+      "category": "E-commerce",
+      "live": "https://homehaus.vercel.app",
+      "featured": true
     },
     {
-      "id": "ai-memory-agent",
-      "title": "AI Memory Agent",
-      "description": "AI-powered memory retrieval tool with advanced NLP capabilities.",
-      "technologies": ["React", "Gemini", "Node.js", "Postgresql"],
+      "id": "timelymemo",
+      "title": "TimelyMemo",
+      "tagline": "AI memory assistant",
+      "description": "An AI-powered external memory. Jot down tasks, purchases, ideas and decisions in plain language; it links related notes and resurfaces them when they matter.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Gemini API"
+      ],
       "image": "",
-      "emoji": "✨",
-      "category": "AI/ML",
+      "icon": "Brain",
+      "category": "AI",
       "live": "https://gonebia.vercel.app/",
       "featured": true
     },
     {
-      "id": "ai-job-trainer",
-      "title": "AI Job Trainer Jobready",
-      "description": "AI-powered interview training.",
-      "technologies": ["React", "Gemini", "Node.js", "Postgresql"],
+      "id": "jobready",
+      "title": "JobReady",
+      "tagline": "AI interview coach",
+      "description": "AI coaching for job interviews and everyday communication. Practice sessions give personalised feedback on delivery, pacing and content, with video analysed privately on the user's device.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Gemini API"
+      ],
       "image": "",
-      "emoji": "✨",
-      "category": "AI/ML",
+      "icon": "BriefcaseBusiness",
+      "category": "AI",
       "live": "https://frontend-khaki-two-25.vercel.app/",
       "featured": true
     },
     {
-      "id": "ai-content-generator",
-      "title": "AI Content Generator",
-      "description": "AI-powered content creation tool with advanced NLP capabilities.",
-      "technologies": ["React", "OpenAI", "Node.js", "MongoDB"],
-      "image": "",
-      "emoji": "✨",
-      "category": "AI/ML",
-      "live": "https://contentfactory-e8ur.onrender.com/",
-      "featured": false
-    },
-    {
-      "id": "task-manager",
-      "title": "Task Manager App",
-      "description": "Comprehensive task manager with completed-percentage tracking and progress analytics.",
-      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
-      "image": "/projects/task-manager.webp",
-      "emoji": "✅",
-      "category": "Web App",
-      "live": "https://tasksreminderapp.netlify.app/",
-      "featured": false
-    },
-    {
-      "id": "vocabulary-app",
-      "title": "Vocabulary.ge - English Learning App",
-      "description": "English learning app for Georgian spoken people.",
-      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
-      "image": "/projects/task-manager.webp",
-      "emoji": "✅",
-      "category": "Web App",
-      "live": "https://vocabulary.ge",
-      "featured": false
-    },
-    {
       "id": "needinfind",
-      "title": "Needinfind - online store with AI",
-      "description": "Online Store that finds what you need with AI.",
-      "technologies": ["Next.js", "TypeScript", "shadcn/ui", "Prisma"],
-      "image": "/projects/task-manager.webp",
-      "emoji": "✅",
-      "category": "Web App",
+      "title": "NeedInFind",
+      "tagline": "AI shopping adviser",
+      "description": "Describe what you need in plain words instead of specs. The AI asks a few clarifying questions and recommends real products from a curated catalogue, with honest trade-offs.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma"
+      ],
+      "image": "",
+      "icon": "ScanSearch",
+      "category": "AI",
       "live": "https://needinfind.vercel.app",
       "featured": false
     },
     {
-  "id": "homehaus",
-  "title": "HomeHaus - home decor store with AI stylist",
-  "description": "Home decor and smart home store with an AI shopping and room-styling assistant, Stripe checkout, an admin dashboard, and English/Georgian support.",
-  "technologies": ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe", "Vercel AI SDK"],
-  "image": "/projects/homehaus.webp",
-  "emoji": "🛋️",
-  "category": "Web App",
-  "live": "https://homehaus.vercel.app",
-  "featured": true
-}
+      "id": "vocabulary-ge",
+      "title": "Vocabulary.ge",
+      "tagline": "English vocabulary for Georgian speakers",
+      "description": "Learn the 500+ most common English words with level-based lessons, spaced repetition and 15-minute daily practice. Also covers irregular verbs and everyday phrases, all explained in Georgian.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma"
+      ],
+      "image": "",
+      "icon": "Languages",
+      "category": "EdTech",
+      "live": "https://vocabulary.ge",
+      "featured": false
+    },
+    {
+      "id": "content-factory",
+      "title": "Content Factory",
+      "tagline": "AI content generator",
+      "description": "AI content creation tool that turns a short brief into ready-to-edit marketing copy, powered by OpenAI with a Node.js and MongoDB backend.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "OpenAI API"
+      ],
+      "image": "",
+      "icon": "PenLine",
+      "category": "AI",
+      "live": "https://contentfactory-e8ur.onrender.com/",
+      "featured": false
+    },
+    {
+      "id": "next-store",
+      "title": "Next Store",
+      "tagline": "Full-stack e-commerce platform",
+      "description": "A modern online store with Stripe payments, real-time inventory and a clean product catalogue.",
+      "technologies": [
+        "Next.js",
+        "Prisma",
+        "Stripe",
+        "Tailwind CSS"
+      ],
+      "image": "",
+      "icon": "ShoppingCart",
+      "category": "E-commerce",
+      "live": "https://next-store-pi-nine.vercel.app/",
+      "featured": false
+    },
+    {
+      "id": "task-reminder",
+      "title": "Task Reminder",
+      "tagline": "Task manager with progress tracking",
+      "description": "Organise work into collections and categories, see completion percentages at a glance, and keep tasks in sync across devices.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "shadcn/ui"
+      ],
+      "image": "/projects/task-manager.webp",
+      "icon": "ListChecks",
+      "category": "Productivity",
+      "live": "https://tasksreminderapp.netlify.app/",
+      "featured": false
+    }
   ]
 }

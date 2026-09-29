@@ -8,11 +8,14 @@ export interface NavItem {
 export interface Project {
   id: string;
   title: string;
+  /** Short one-liner shown under the title, e.g. "AI interview coach". */
+  tagline: string;
   description: string;
   technologies: string[];
-  /** Path under /public, e.g. "/projects/my-app.webp". Leave "" to show the emoji tile. */
+  /** Path under /public, e.g. "/projects/my-app.webp". Leave "" to show the icon cover. */
   image: string;
-  emoji: string;
+  /** Lucide icon name for the cover shown until a screenshot is added (see lib/icons.ts). */
+  icon: string;
   category: string;
   /** Live URL. Leave "" if there is no public demo. */
   live: string;

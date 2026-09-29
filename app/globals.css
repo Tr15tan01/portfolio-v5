@@ -1,49 +1,31 @@
 @import "tailwindcss";
 
+/* Dark mode only: every `dark:` utility always applies (html has class="dark"). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ------------------------------------------------------------------ */
-/* Design tokens                                                        */
-/* Light by default, dark follows the visitor's OS setting.             */
+/* Design tokens (dark theme only)                                      */
 /* ------------------------------------------------------------------ */
 :root {
-  --background: hsl(270 100% 99%);
-  --foreground: hsl(262 60% 12%);
-  --card: hsl(0 0% 100% / 0.6);
+  color-scheme: dark;
+  --background: hsl(262 60% 5%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(262 40% 10% / 0.55);
   --card-foreground: var(--foreground);
-  --primary: hsl(262 83% 58%);
+  --primary: hsl(262 83% 66%);
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(262 100% 97%);
-  --secondary-foreground: hsl(262 83% 45%);
-  --accent: hsl(292 83% 58%);
+  --secondary: hsl(262 45% 13%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --accent: hsl(292 83% 66%);
   --accent-foreground: hsl(0 0% 100%);
-  --muted: hsl(262 100% 95%);
-  --muted-foreground: hsl(262 25% 38%);
-  --border: hsl(262 30% 88%);
-  --input: hsl(262 30% 85%);
-  --ring: hsl(262 83% 58%);
+  --muted: hsl(262 45% 11%);
+  --muted-foreground: hsl(262 25% 74%);
+  --border: hsl(262 30% 20%);
+  --input: hsl(262 30% 24%);
+  --ring: hsl(262 83% 66%);
   --destructive: hsl(0 84% 55%);
   --destructive-foreground: hsl(0 0% 98%);
-  --success: hsl(152 60% 38%);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: hsl(262 60% 5%);
-    --foreground: hsl(0 0% 98%);
-    --card: hsl(262 40% 10% / 0.55);
-    --card-foreground: var(--foreground);
-    --primary: hsl(262 83% 66%);
-    --primary-foreground: hsl(0 0% 100%);
-    --secondary: hsl(262 45% 13%);
-    --secondary-foreground: hsl(0 0% 98%);
-    --accent: hsl(292 83% 66%);
-    --accent-foreground: hsl(0 0% 100%);
-    --muted: hsl(262 45% 11%);
-    --muted-foreground: hsl(262 25% 74%);
-    --border: hsl(262 30% 20%);
-    --input: hsl(262 30% 24%);
-    --ring: hsl(262 83% 66%);
-    --success: hsl(152 60% 55%);
-  }
+  --success: hsl(152 60% 55%);
 }
 
 @theme inline {
@@ -121,16 +103,10 @@
 /* Static gradient: no infinite background-position animation, which
    used to repaint every headline on every frame. */
 .purple-gradient-text {
-  background-image: linear-gradient(135deg, #7c3aed 0%, #a855f7 45%, #db2777 100%);
+  background-image: linear-gradient(135deg, #a78bfa 0%, #c084fc 45%, #f472b6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-@media (prefers-color-scheme: dark) {
-  .purple-gradient-text {
-    background-image: linear-gradient(135deg, #a78bfa 0%, #c084fc 45%, #f472b6 100%);
-  }
 }
 
 .glass-purple {
@@ -176,14 +152,16 @@
   }
 }
 
+/* Uses the standalone `translate` property (not `transform`) so the held
+   end state never overrides hover transforms like .lift on the same element. */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    translate: 0 24px;
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    translate: 0 0;
   }
 }
 
@@ -299,6 +277,89 @@
   }
   .ambient__blob--1 {
     animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Small interactions (transform/opacity only, GPU-composited)          */
+/* ------------------------------------------------------------------ */
+
+/* Light sweep across a card on hover */
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgb(255 255 255 / 0.07) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+@media (hover: hover) {
+  .card-shine:hover::after {
+    transform: translateX(120%);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Project cover shown until a screenshot is added */
+.project-cover__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.project-cover__glow {
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(192 132 252 / 0.35) 0%, transparent 70%);
+  opacity: 0.7;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.project-cover__icon {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (hover: hover) {
+  .group:hover .project-cover__icon {
+    transform: translateY(-6px) rotate(-6deg) scale(1.06);
+  }
+  .group:hover .project-cover__glow {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+/* Accent bar under section headings, grows in as it scrolls into view */
+.heading-bar {
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 1.25rem auto 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #a78bfa, #f472b6);
+  transform-origin: center;
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .heading-bar {
+      animation: grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
   }
 }
 
