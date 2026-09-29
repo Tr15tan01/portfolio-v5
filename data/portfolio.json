@@ -186,7 +186,7 @@
       "emoji": "🛒",
       "category": "Full Stack",
       "live": "https://next-store-pi-nine.vercel.app/",
-      "featured": true
+      "featured": false
     },
     {
       "id": "ai-memory-agent",
