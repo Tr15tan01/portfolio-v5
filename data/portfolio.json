@@ -384,6 +384,40 @@
       "featured": false
     },
     {
+      "id": "crypto-lab",
+      "title": "Crypto Lab",
+      "tagline": "Full-stack crypto trading platform",
+      "description": "A modern online crypto trading platform, real-time trade and a clean product catalogue.",
+      "technologies": [
+        "Next.js",
+        "Prisma",
+        "Stripe",
+        "Tailwind CSS"
+      ],
+      "image": "",
+      "icon": "ShoppingCart",
+      "category": "E-commerce",
+      "live": "https://cryptolab-blond.vercel.app/",
+      "featured": false
+    },
+    {
+      "id": "chess-game",
+      "title": "Chess Game",
+      "tagline": "Chess game",
+      "description": "A chess game platrofm with difficulties, 2d, 3d.",
+      "technologies": [
+        "Next.js",
+        "Prisma",
+        "Stripe",
+        "Tailwind CSS"
+      ],
+      "image": "",
+      "icon": "ShoppingCart",
+      "category": "Games",
+      "live": "https://lifechess.vercel.app/",
+      "featured": false
+    },
+    {
       "id": "task-reminder",
       "title": "Task Reminder",
       "tagline": "Task manager with progress tracking",
