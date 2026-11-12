@@ -433,6 +433,23 @@
       "category": "Productivity",
       "live": "https://tasksreminderapp.netlify.app/",
       "featured": false
+    },
+    {
+      "id": "knowledge-studio",
+      "title": "Knowledge Studio",
+      "tagline": "Knowledge studio with pdf and other book upload",
+      "description": "Upload books and ask questions to AI, and keep tasks in sync across devices.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Python",
+        "shadcn/ui"
+      ],
+      "image": "",
+      "icon": "ShoppingCart",
+      "category": "Productivity",
+      "live": "https://knowledge-studio-kag9.onrender.com/",
+      "featured": false
     }
   ]
 }
