@@ -6,6 +6,7 @@ import { AnimatedBackground } from "@/components/animations/animated-background"
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
 import { FloatingCta } from "@/components/layout/floating-cta";
+import { HideOnAdmin } from "@/components/layout/hide-on-admin";
 import { getSocialLinks, portfolio, siteUrl } from "@/lib/portfolio";
 
 const inter = Inter({
@@ -103,12 +104,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         <AnimatedBackground />
-        <Navigation />
+        <HideOnAdmin>
+          <Navigation />
+        </HideOnAdmin>
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer />
-        <FloatingCta />
+        <HideOnAdmin>
+          <Footer />
+          <FloatingCta />
+        </HideOnAdmin>
 
         {gaId && (
           <>

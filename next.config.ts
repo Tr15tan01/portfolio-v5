@@ -11,6 +11,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  // Admin saves can include a couple of compressed screenshots (hosts cap function requests at ~4.5-6 MB).
+  experimental: { serverActions: { bodySizeLimit: "4mb" } },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,

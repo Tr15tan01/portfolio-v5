@@ -7,7 +7,7 @@ import { isPlaceholderUrl, type Project } from "@/lib/portfolio";
 import { cn } from "@/lib/utils";
 
 /** Cover tint per category. Literal class strings so Tailwind picks them up. */
-const COVER_TINT: Record<string, string> = {
+export const COVER_TINT: Record<string, string> = {
   AI: "from-violet-600/35 via-fuchsia-500/10 to-indigo-600/35",
   "E-commerce": "from-pink-600/30 via-rose-500/10 to-purple-600/35",
   EdTech: "from-sky-500/25 via-indigo-500/10 to-purple-600/35",
