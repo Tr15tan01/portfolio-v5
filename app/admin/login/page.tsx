@@ -1,10 +1,11 @@
-import { adminConfigured } from "@/lib/admin/session";
+import { adminConfigProblems, adminConfigured } from "@/lib/admin/session";
 import { LoginForm } from "./login-form";
 
 export const dynamic = "force-dynamic";
 
 export default function AdminLoginPage() {
   const configured = adminConfigured();
+  const problems = configured ? [] : adminConfigProblems();
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-16">
@@ -17,7 +18,12 @@ export default function AdminLoginPage() {
         ) : (
           <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-200">
             The admin panel is not set up yet. Add <code>ADMIN_USERNAME</code>, <code>ADMIN_PASSWORD</code> and{" "}
-            <code>ADMIN_SESSION_SECRET</code> (32+ characters) to your environment variables, then restart.
+            <code>ADMIN_SESSION_SECRET</code> (32+ characters) to your environment variables, then redeploy.
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-amber-100/90">
+              {problems.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

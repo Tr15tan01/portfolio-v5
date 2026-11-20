@@ -9,9 +9,19 @@ export const SESSION_MAX_AGE_S = 60 * 60 * 24 * 7; // 7 days
 
 const enc = new TextEncoder();
 
+/** Names (never values) of admin env vars that are missing or invalid at runtime. */
+export const adminConfigProblems = () => {
+  const problems: string[] = [];
+  if (!process.env.ADMIN_USERNAME) problems.push("ADMIN_USERNAME is missing");
+  if (!process.env.ADMIN_PASSWORD) problems.push("ADMIN_PASSWORD is missing");
+  const secret = process.env.ADMIN_SESSION_SECRET ?? "";
+  if (!secret) problems.push("ADMIN_SESSION_SECRET is missing");
+  else if (secret.length < 32) problems.push(`ADMIN_SESSION_SECRET is too short (${secret.length} characters, needs 32+)`);
+  return problems;
+};
+
 /** True when the env vars needed for the admin panel are present. */
-export const adminConfigured = () =>
-  Boolean(process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD && (process.env.ADMIN_SESSION_SECRET ?? "").length >= 32);
+export const adminConfigured = () => adminConfigProblems().length === 0;
 
 const toBase64Url = (buf: ArrayBuffer) => {
   let s = "";
